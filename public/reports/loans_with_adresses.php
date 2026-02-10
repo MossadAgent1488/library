@@ -16,18 +16,18 @@ $loans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <tr>
     <th>Книга</th>
     <th>Читатель</th>
+    <th>Город</th>
     <th>Адрес</th>
-    <th>Дата выдачи</th>
-    <th>Срок</th>
+
 </tr>
 
 <?php foreach ($loans as $loan): ?>
 <tr>
     <td><?= htmlspecialchars($loan['title']) ?></td>
-    <td><?= htmlspecialchars($loan['reader_id']) ?></td>
-    <td><?= htmlspecialchars($loan['address']) ?></td>
-    <td><?= $loan['issue_date'] ?></td>
-    <td><?= $loan['due_date'] ?></td>
+    <td><?= htmlspecialchars($loan['last_name']." ".$loan['first_name']) ?></td>
+    <td><?= htmlspecialchars($loan['issue_city']) ?></td>
+    <td><?= htmlspecialchars($loan['issue_address']) ?></td>
+
 </tr>
 <?php endforeach; ?>
 </table>
