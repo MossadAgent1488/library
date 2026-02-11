@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $db = DB::getConnection();
+    $r_id = $db->query("SELECT COUNT(*) FROM Readers");
+        $ro_id = $r_id->fetchAll(); echo (int)($ro_id[0][0]);
 
     try {
         $db = DB::getConnection();
@@ -76,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([
             $login,
             $password_hash,
-            $ro_id[0][0]
+            (int)($ro_id[0][0])+1
         ]);
 
         $stmt->closeCursor();
